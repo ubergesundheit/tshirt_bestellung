@@ -7,13 +7,13 @@
 <script src="bower_components/angular/angular.js"></script>
 <style type="text/css">
 #tab {
-  width: 50%;
-  margin-left: 50%;
+  width: 56%;
+  margin-left: 44%;
 }
 
 div#form {
   float: left;
-  width: 50%;
+  width: 44%;
 }
 
 table {
@@ -24,18 +24,22 @@ div.field, div.actions {
   margin-bottom: 10px;
   text-align: center;
   vertical-align: middle;
-   }
+}
 
 input {
   height: 2em;
-  font-size: 1.2em; }
+  font-size: 1.2em; 
+}
 
-input[type="submit"] {
+button {
   margin-top: 0.5em;
+  height: 2em;
+  font-size: 1.2em;
 }
 
 input[type="radio"] {
-  display: none; }
+  display: none;
+}
 
 .radio_label {
   display: inline-block;
@@ -43,26 +47,29 @@ input[type="radio"] {
   width: 100px;
   vertical-align: middle;
   background-color: lightgrey;
-  border: 3px solid transparent; }
+  border: 3px solid transparent;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
 
 .selector_label {
   width: 25px;
 }
 
-.preview {
-}
-
 .shirt {
   display: inline-block;
-  height: 260px;
+  padding-top:20px;
+  height: 240px;
   width: 200px;
   float: left;
-  background-color: attr(data-color); }
+}
 
 .shirt_text {
-  color: red;
-  margin-top: -10px;
-  font-size: 16pt; }
+  color: white;
+  margin-top: -40px;
+  font-size: 16pt;
+}
 
 .shirt_text:before {
   content: attr(data-study); 
@@ -70,19 +77,27 @@ input[type="radio"] {
 
 .selector_container {
   height: 260px;
-  width: 100px;
+  width: 75px;
   float: left;
 }
 
+@font-face {
+  font-family: globusFont;
+  src: url('globus_font.ttf');
+} 
+
 .globus {
-  fill: red;
-  fill-rule: nonzero;
-  height: 200px; 
+  display:inline;
+  font-family: globusFont;
+  font-size: 200px;
+  color: white;
+  margin-top: 20px;
 }
 
 input[type="radio"]:checked + label {
   border: 3px solid red;
-  font-weight: bold; }
+  font-weight: bold; 
+}
 
 input[type="radio"]:disabled + label {
   color: grey;
@@ -90,15 +105,18 @@ input[type="radio"]:disabled + label {
 }
 
 .geo {
-  background-color: orange; }
+  background-color: orange;
+}
 
 .gi {
-  background-color: #336699; }
+  background-color: #336699;
+}
 
 .loek {
-  background-color: green; }
+  background-color: green;
+}
 
-.black {
+.Black {
   background-color: black;
 }
 
@@ -110,229 +128,367 @@ input[type="radio"]:disabled + label {
   background-color: lightcoral;
 }
 
-.city_green {
+.CityGreen {
   background-color: forestgreen;
 }
 
-.navy {
+.Navy {
   background-color: navy;
-    fill: red;
-  fill-rule: nonzero;
 }
 
-.river_blue {
+.RiverBlue {
   background-color: cornflowerblue;
 }
 
-.chocolate {
+.Chocolate {
   background-color: chocolate;
 }
 
-.red {
+.Red {
   background-color: red;
 }
 
-.white {
+.White {
   background-color: ghostwhite;
 }
 
-.natural {
+.Natural {
   background-color: wheat;
 }
 
-.neon_gruen {
+label.NeonGrün {
   background-color: yellowgreen;
 }
 
-.neon_pink {
+p.NeonGrün {
+  color: yellowgreen;
+}
+
+label.NeonPink {
   background-color: deeppink;
 }
 
-.blau {
+p.NeonPink {
+  color: deeppink;
+}
+
+label.Blau {
   background-color: steelblue;
 }
 
-.hellblau {
+p.Blau {
+  color: steelblue;
+}
+
+label.Hellblau {
   background-color: skyblue;
 }
 
-label.neon_gelb {
+p.Hellblau {
+  color: skyblue;
+}
+
+label.NeonGelb {
   background-color: yellow;
 }
 
-p.neon_gelb {
+p.NeonGelb {
   color: yellow;
 }
 
-.gelb {
+label.Gelb {
  background-color: gold;
 }
 
-.beige {
-  background-color: beige;
+p.Gelb {
+  color: gold;
 }
 
-.kackbraun {
+label.Beige {
+  background-color: darkgoldenrod;
+}
+
+p.Beige {
+  color: darkgoldenrod;
+}
+
+label.Kackbraun {
   background-color: saddlebrown;
 }
 
-.orange {
+p.Kackbraun {
+  color: saddlebrown;
+}
+
+label.Orange {
  background-color: darkorange;
 }
 
-.neon_orange {
+p.Orange {
+  color: darkorange;
+}
+
+label.NeonOrange {
   background-color: orange;
+}
+
+p.NeonOrange {
+  color: orange;
+}
+
+label.Weiss {
+  background-color: ghostwhite;
+}
+
+p.Weiss {
+  color: ghostwhite;
+}
+
+label.Schwarz {
+  background-color: black;
+}
+
+p.Schwarz {
+  color: black;
+}
+
+label.Rot {
+  background-color: red;
+}
+
+p.Rot {
+  color: red;
+}
+
+td.tabhead {
+  font-weight: bold;
+  border-bottom: 2px solid black;
 }
 </style>
 <script type="text/javascript">
   ShirtCtrl = function($scope) {
-    $scope.shirtAnzahl = 1;
-    $scope.femaleSelected = function() {
-      return ($scope.shirtGeschlecht === 'Damen' ? true : false);
-    };
-    $scope.shirtFarbe = 'black';
     $scope.shirts = [];
+    $scope.master = {
+      shirtName:        '',
+      shirtEmail:       '',
+      shirtAnzahl:      1,
+      shirtStudiengang: '',
+      shirtGeschlecht:  '',
+      shirtGroesse:     '',
+      shirtFarbe:       '',
+      shirtAufdruck:    ''
+    };
+
+    $scope.femaleSelected = function() {
+      return ($scope.shirt.shirtGeschlecht === 'Damen' ? true : false);
+    };
 
     $scope.addShirt = function() {
-      $scope.shirts.push(
-        {
-          name:$scope.shirtName,
-          email:$scope.shirtEmail,
-          anzahl:$scope.shirtAnzahl,
-          studiengang:$scope.shirtStudiengang,
-          geschlecht:$scope.shirtGeschlecht,
-          groesse:$scope.shirtGroesse,
-          farbe:$scope.shirtFarbe,
-          aufdruck:$scope.shirtAufdruck
+      $scope.shirts.push({
+          name:         $scope.shirt.shirtName,
+          email:        $scope.shirt.shirtEmail,
+          anzahl:       $scope.shirt.shirtAnzahl,
+          studiengang:  $scope.shirt.shirtStudiengang,
+          geschlecht:   $scope.shirt.shirtGeschlecht,
+          groesse:      $scope.shirt.shirtGroesse,
+          farbe:        $scope.shirt.shirtFarbe,
+          aufdruck:     $scope.shirt.shirtAufdruck
         });
       $scope.reset();
     };
+
+    $scope.reset = function() {
+      $scope.shirt = angular.copy($scope.master);
+    };
+     
+    $scope.isUnchanged = function(shirt) {
+      return angular.equals(shirt, $scope.master);
+    };
+
+    $scope.reset();
+  };
+  window.onbeforeunload = function() {
+    return false;
   }
 </script>
 </head>
 <body ng-controller="ShirtCtrl">
 <div id="form">
-<form accept-charset="UTF-8" ng-submit="addShirt()">
+<form accept-charset="UTF-8" name="form" novalidate>
   <div class="field">
-    <input placeholder="Name" type="text" ng-model="shirtName" />
+    <input placeholder="Name" type="text" ng-model="shirt.shirtName" required />
   </div>
   <div class="field">
-    <input placeholder="E-Mail" type="email" ng-model="shirtEmail" />
+    <input placeholder="E-Mail" type="email" ng-model="shirt.shirtEmail" required />
   </div>
   <div class="field">
     <label for="shirt_anzahl">Anzahl</label><br />
-    <input type="number" ng-model="shirtAnzahl" />
+    <input type="number" ng-model="shirt.shirtAnzahl" />
   </div>
   <div class="field">
-    <input id="shirt_studiengang_geo" type="radio" value="GEO" ng-model="shirtStudiengang" />
+    <input id="shirt_studiengang_geo" type="radio" value="GEO" ng-model="shirt.shirtStudiengang" />
     <label class="radio_label geo" for="shirt_studiengang_geo">GEO</label>
-    <input id="shirt_studiengang_loek" type="radio" value="Lök" ng-model="shirtStudiengang" />
+    <input id="shirt_studiengang_loek" type="radio" value="Lök" ng-model="shirt.shirtStudiengang" />
     <label class="radio_label loek" for="shirt_studiengang_loek">Lök</label>
-    <input id="shirt_studiengang_gi" type="radio" value="GI" ng-model="shirtStudiengang" />
+    <input id="shirt_studiengang_gi" type="radio" value="GI" ng-model="shirt.shirtStudiengang" />
     <label class="radio_label gi" for="shirt_studiengang_gi">GI</label>
+    <input type="hidden" ng-model="shirt.shirtStudiengang" required />
   </div>
   <div class="field">
-    <input id="shirt_geschlecht_herren" type="radio" value="Herren" ng-model="shirtGeschlecht" />
+    <input id="shirt_geschlecht_herren" type="radio" value="Herren" ng-model="shirt.shirtGeschlecht" />
     <label class="radio_label herren" for="shirt_geschlecht_herren">Herren</label>
-    <input id="shirt_geschlecht_damen" type="radio" value="Damen" ng-model="shirtGeschlecht" />
+    <input id="shirt_geschlecht_damen" type="radio" value="Damen" ng-model="shirt.shirtGeschlecht" />
     <label class="radio_label damen" for="shirt_geschlecht_damen">Damen</label>
+    <input type="hidden" ng-model="shirt.shirtGeschlecht" required>
   </div>
   <div class="field">
-    <input id="shirt_groesse_xxl" type="radio" value="XXL" ng-model="shirtGroesse" ng-disabled="femaleSelected()" />
+    <input id="shirt_groesse_xxl" type="radio" value="XXL" ng-model="shirt.shirtGroesse" ng-disabled="femaleSelected()" />
     <label class="radio_label" for="shirt_groesse_xxl">XXL</label>
-    <input id="shirt_groesse_xl" type="radio" value="XL" ng-model="shirtGroesse" />
+    <input id="shirt_groesse_xl" type="radio" value="XL" ng-model="shirt.shirtGroesse" />
     <label class="radio_label" for="shirt_groesse_xl">XL</label>
-    <input id="shirt_groesse_l" type="radio" value="L" ng-model="shirtGroesse" />
+    <input id="shirt_groesse_l" type="radio" value="L" ng-model="shirt.shirtGroesse" />
     <label class="radio_label" for="shirt_groesse_l">L</label>
-    <input id="shirt_groesse_m" type="radio" value="M" ng-model="shirtGroesse" />
+    <input id="shirt_groesse_m" type="radio" value="M" ng-model="shirt.shirtGroesse" />
     <label class="radio_label" for="shirt_groesse_m">M</label>
-    <input id="shirt_groesse_s" type="radio" value="S" ng-model="shirtGroesse" />
+    <input id="shirt_groesse_s" type="radio" value="S" ng-model="shirt.shirtGroesse" />
     <label class="radio_label" for="shirt_groesse_s">S</label>
+    <input type="hidden" ng-model="shirt.shirtGroesse" required>
   </div>
   <div class="field preview">
     <div class="selector_container" style="margin-left:18%;">
-      <input id="shirt_farbe_black" type="radio" value="black" ng-model="shirtFarbe" ng-change="update_preview()" />
-      <label class="radio_label selector_label black" for="shirt_farbe_black"></label>
-      <input id="shirt_farbe_city_green" type="radio" value="city_green" ng-model="shirtFarbe" ng-change="update_preview()" />
-      <label class="radio_label selector_label city_green" for="shirt_farbe_city_green"></label>
-      <input id="shirt_farbe_navy" type="radio" value="navy" ng-model="shirtFarbe" ng-change="update_preview()" />
-      <label class="radio_label selector_label navy" for="shirt_farbe_navy"></label>
-      <input id="shirt_farbe_river_blue" type="radio" value="river_blue" ng-model="shirtFarbe" ng-change="update_preview()" />
-      <label class="radio_label selector_label river_blue" for="shirt_farbe_river_blue"></label>
-      <input id="shirt_farbe_chocolate" type="radio" value="chocolate" ng-model="shirtFarbe" ng-change="update_preview()" />
-      <label class="radio_label selector_label chocolate" for="shirt_farbe_chocolate"></label>
-      <input id="shirt_farbe_red" type="radio" value="red" ng-model="shirtFarbe" ng-change="update_preview()" />
-      <label class="radio_label selector_label red" for="shirt_farbe_red"></label>
-      <input id="shirt_farbe_white" type="radio" value="white" ng-model="shirtFarbe" ng-change="update_preview()" />
-      <label class="radio_label selector_label white" for="shirt_farbe_white"></label>
-      <input id="shirt_farbe_natural" type="radio" value="natural" ng-model="shirtFarbe" ng-change="update_preview()" />
-      <label class="radio_label selector_label natural" for="shirt_farbe_natural"></label>
+      <input id="shirt_farbe_Black" type="radio" value="Black" ng-model="shirt.shirtFarbe" />
+      <label class="radio_label selector_label Black" for="shirt_farbe_Black" title="Black"></label>
+      <input id="shirt_farbe_CityGreen" type="radio" value="CityGreen" ng-model="shirt.shirtFarbe" />
+      <label class="radio_label selector_label CityGreen" for="shirt_farbe_CityGreen" title="City Green"></label>
+      <input id="shirt_farbe_Navy" type="radio" value="Navy" ng-model="shirt.shirtFarbe" />
+      <label class="radio_label selector_label Navy" for="shirt_farbe_Navy" title="Navy"></label>
+      <input id="shirt_farbe_RiverBlue" type="radio" value="RiverBlue" ng-model="shirt.shirtFarbe" />
+      <label class="radio_label selector_label RiverBlue" for="shirt_farbe_RiverBlue" title="River Blue"></label>
+      <input id="shirt_farbe_Chocolate" type="radio" value="Chocolate" ng-model="shirt.shirtFarbe" />
+      <label class="radio_label selector_label Chocolate" for="shirt_farbe_Chocolate" title="Chocolate"></label>
+      <input id="shirt_farbe_Red" type="radio" value="Red" ng-model="shirt.shirtFarbe" />
+      <label class="radio_label selector_label Red" for="shirt_farbe_Red" title="Red"></label>
+      <input id="shirt_farbe_White" type="radio" value="White" ng-model="shirt.shirtFarbe" />
+      <label class="radio_label selector_label White" for="shirt_farbe_White" title="White"></label>
+      <input id="shirt_farbe_Natural" type="radio" value="Natural" ng-model="shirt.shirtFarbe" />
+      <label class="radio_label selector_label Natural" for="shirt_farbe_Natural" title="Natural"></label>
+      <input type="hidden" ng-model="shirt.shirtFarbe" required>
     </div>
-    <div class="shirt" ng-class="shirtFarbe">
-      <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" id="svg2" version="1.1" inkscape:version="0.48.4 r9939" width="180.1" height="220" xml:space="preserve"><metadata id="metadata8"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata><defs id="defs6"><clipPath clipPathUnits="userSpaceOnUse" id="clipPath16"><path d="m 0 841.9 595.3 0 L 595.3 0 0 0 0 841.9 z" id="path18" inkscape:connector-curvature="0"/></clipPath></defs><g id="g10" inkscape:groupmode="layer" inkscape:label="vorlage_gi" transform="matrix(1.25,0,0,-1.25,-122.58747,508.26787)"><path inkscape:connector-curvature="0" id="path142" d="m 174.6 273.8 c -22.9 -0 -44.8 13.1 -54.9 35 -6.8 14.7 -7.4 31.1 -1.8 46.3 5.6 15.2 16.8 27.3 31.5 34.1 0 0 0.7 0.3 2.9 1.3 0.2 0.1 0.4 0.1 0.6 -0 0.2 -0.1 0.3 -0.3 0.4 -0.4 l 1.2 -5 c 0.1 -0.3 -0.1 -0.6 -0.4 -0.8 -0 -0 -0.1 -0 -0.1 -0.1 l -0.1 -0 c -0.1 -0 -0.1 -0.1 -0.2 -0.1 -0.3 -0.1 -0.9 -0.4 -1.8 -0.8 -0.9 -0.4 -1.7 -0.8 -2.5 -1.2 -25.8 -13.5 -36.5 -44.7 -24.3 -71 12.1 -26.2 42.8 -38.3 69.7 -27.6 0.3 0.1 0.7 -0 0.9 -0.4 0.1 -0.3 -0 -0.7 -0.4 -0.9 -27.6 -11.1 -59 1.3 -71.5 28.2 -12.5 27 -1.5 59 24.9 72.8 0.8 0.4 1.6 0.8 2.5 1.3 0.8 0.4 1.4 0.6 1.8 0.8 l -0.9 3.6 c -1.6 -0.7 -2.2 -1 -2.2 -1 -14.4 -6.7 -25.4 -18.5 -30.9 -33.3 -5.5 -14.8 -4.9 -30.9 1.8 -45.2 13.2 -28.5 46.4 -41.7 75.7 -30 0.3 0.1 0.7 -0 0.9 -0.4 0.1 -0.3 -0 -0.7 -0.4 -0.9 -7.4 -2.9 -15 -4.3 -22.5 -4.3" class="globus"/><path inkscape:connector-curvature="0" id="path130" d="m 143.7 310.4 c -5.3 0 -10.5 0.6 -15.3 1.7 -0.4 0.1 -0.6 0.5 -0.5 0.8 0.1 0.4 0.4 0.6 0.8 0.5 16.2 -3.8 36.1 -1 54.6 7.7 18.2 8.5 31.9 21.6 36.7 35 0.1 0.4 0.5 0.5 0.9 0.4 0.4 -0.1 0.5 -0.5 0.4 -0.9 -2.5 -7.1 -7.3 -13.9 -14.1 -20.3 -6.4 -6 -14.4 -11.3 -23.3 -15.5 -13.3 -6.2 -27.3 -9.5 -40.1 -9.5" class="globus"/><path inkscape:connector-curvature="0" id="path162" d="m 191.3 345.3 c 0 -1.8 -1.4 -3.2 -3.2 -3.2 -1.8 0 -3.2 1.4 -3.2 3.2 0 1.8 1.4 3.2 3.2 3.2 1.8 0 3.2 -1.4 3.2 -3.2" class="globus"/><path inkscape:connector-curvature="0" id="path134" d="m 164.1 339.2 c 0 -1.8 -1.4 -3.2 -3.2 -3.2 -1.8 0 -3.2 1.4 -3.2 3.2 0 1.8 1.4 3.2 3.2 3.2 1.8 0 3.2 -1.4 3.2 -3.2" class="globus"/><path inkscape:connector-curvature="0" id="path82" d="m 176.3 246.6 c -23.2 0.1 -29 3.9 -30.3 5 -0.1 0.1 -0.2 0.3 -0.2 0.5 l 0 2.5 c 0 0.4 0.3 0.7 0.7 0.7 l 0 0 c 0.4 -0 0.7 -0.3 0.7 -0.7 l -0 -2.1 c 1.4 -1.1 7.3 -4.4 29.1 -4.5 l 0 0 c 22 0.1 27.9 3.4 29.2 4.4 l 0 2.2 c 0 0.4 0.3 0.7 0.7 0.7 l 0 0 c 0.4 -0 0.7 -0.3 0.7 -0.7 l -0 -2.5 c -0 -0.2 -0.1 -0.4 -0.2 -0.5 -1.2 -1.2 -7 -4.9 -30.3 -5 l -0 0 z" class="globus"/><path inkscape:connector-curvature="0" id="path86" d="m 173.2 271.3 c 0.7 -0.2 2.1 -0.4 3.1 -0.4 1 -0 2.2 0.2 2.8 0.4 l 0 0.1 c 0 0 -0 0 -0 0 l -0.3 0.2 c -0.8 -0.3 -1.9 -0.4 -2.6 -0.4 -0 -0 -0.1 0 -0.1 0 -0 -0 -0.1 -0 -0.1 -0 -0.6 0 -1.7 0.1 -2.6 0.4 l -0.3 -0.2 c -0 -0 -0 -0 -0 -0 l 0 -0.1 z m 3.2 -1.8 c -0 0 -0.1 0 -0.1 0 -1.3 0 -3.5 0.4 -4.1 0.7 -0.2 0.1 -0.4 0.3 -0.4 0.6 l 0 0.6 c 0 0.6 0.3 0.9 0.4 1 l 0.7 0.5 c 0.2 0.2 0.5 0.2 0.7 0.1 0.5 -0.2 1.4 -0.4 2.5 -0.4 0 -0 0 -0 0 -0 0 0 0 0 0 0 1 0 1.9 0.2 2.5 0.4 0.2 0.1 0.5 0.1 0.7 -0.1 l 0.7 -0.5 c 0.1 -0.1 0.4 -0.4 0.4 -1 l 0 -0.6 c 0 -0.3 -0.1 -0.5 -0.4 -0.6 l -0.1 -0 c -0 -0 -0 -0 -0 -0 -0.6 -0.3 -2.2 -0.6 -3.6 -0.6" class="globus" ng-class="shirtAufdruck"/><path inkscape:connector-curvature="0" id="path90" d="m 164.9 259.7 c -0.1 0 -0.2 0 -0.2 0 -0.2 0.1 -0.4 0.2 -0.6 0.3 l -0.1 0 c -0.2 0.1 -0.4 0.4 -0.4 0.7 -0 0.5 0.4 1.3 1 1.5 1 0.4 2.8 0.8 3.6 1 0.6 1.8 2.2 5.6 3.7 8 0.2 0.3 0.6 0.4 0.9 0.2 0.3 -0.2 0.4 -0.6 0.2 -0.9 -1.6 -2.5 -3.3 -6.7 -3.7 -8 -0.1 -0.2 -0.3 -0.4 -0.5 -0.5 -0 -0 -2.5 -0.5 -3.7 -1 0.3 -0.2 0.4 -0.5 0.3 -0.8 -0.1 -0.3 -0.4 -0.5 -0.6 -0.5" class="globus"/><path inkscape:connector-curvature="0" id="path94" d="m 166.2 259.3 c -0.1 0 -0.1 0 -0.2 0 -0.1 0 -0.2 0.1 -0.4 0.1 -0.3 0.1 -0.5 0.5 -0.4 0.9 0.1 0.3 0.5 0.5 0.9 0.4 0.1 -0 0.1 -0 0.2 -0.1 0.4 -0.1 0.6 -0.5 0.5 -0.8 -0.1 -0.3 -0.4 -0.5 -0.7 -0.5" class="globus"/><path inkscape:connector-curvature="0" id="path98" d="m 167.5 258.9 0.1 0.7 -0.1 -0.7 c -0.3 0.1 -0.6 0.1 -0.8 0.2 -0.4 0.1 -0.6 0.5 -0.5 0.8 0.1 0.4 0.5 0.6 0.8 0.5 0.2 -0.1 0.5 -0.1 0.7 -0.2 l -0.3 -1.3 z" class="globus"/><path inkscape:connector-curvature="0" id="path102" d="m 175.3 258.1 -0 0 c -2.8 0.1 -5.3 0.3 -7.4 0.7 -0.4 0.1 -0.6 0.4 -0.5 0.8 0.1 0.4 0.4 0.6 0.8 0.5 2 -0.4 4.4 -0.6 7.1 -0.7 0.4 -0 0.7 -0.3 0.7 -0.7 -0 -0.4 -0.3 -0.7 -0.7 -0.7" class="globus"/><path inkscape:connector-curvature="0" id="path106" d="m 176.6 258.1 c -0.3 0 -0.7 0 -1.1 0 -0.4 0 -0.7 0.3 -0.7 0.7 0 0.4 0.3 0.7 0.7 0.7 0.9 -0 1.8 -0 2.5 0 0.4 0 0.7 -0.3 0.7 -0.7 0 -0.4 -0.3 -0.7 -0.7 -0.7 -0.5 -0 -1 -0 -1.5 -0" class="globus"/><path inkscape:connector-curvature="0" id="path110" d="m 179 258.2 c -0.4 0 -0.7 0.3 -0.7 0.6 -0 0.4 0.3 0.7 0.6 0.7 1.7 0.1 3.2 0.2 4.6 0.4 0.4 0.1 0.7 -0.2 0.8 -0.6 0.1 -0.4 -0.2 -0.7 -0.6 -0.8 -1.4 -0.2 -3 -0.4 -4.7 -0.4 -0 -0 -0 -0 -0 -0" class="globus"/><path inkscape:connector-curvature="0" id="path114" d="m 184.6 258.8 c -0.3 0 -0.6 0.2 -0.7 0.5 -0.1 0.4 0.2 0.7 0.5 0.8 1.2 0.2 2.1 0.5 2.8 0.8 -1.2 0.5 -3.7 1 -3.7 1 -0.2 0.1 -0.4 0.2 -0.5 0.5 -0.4 1.3 -2.1 5.6 -3.7 8 -0.2 0.3 -0.1 0.7 0.2 0.9 0.3 0.2 0.7 0.1 0.9 -0.2 1.5 -2.3 3.1 -6.2 3.7 -8 0.8 -0.2 2.6 -0.6 3.6 -1 0.5 -0.2 1 -0.9 1 -1.4 0 -0.3 -0.1 -0.6 -0.4 -0.7 -0.8 -0.5 -2.1 -0.9 -3.7 -1.2 -0 -0 -0.1 -0 -0.1 -0" class="globus"/><path inkscape:connector-curvature="0" id="path118" d="m 147.3 254.7 c 1.2 -1 7 -4.4 29.1 -4.5 0 0 0.1 -0 0.1 -0 22 0.1 27.7 3.5 28.9 4.5 -2.4 1.9 -13.6 4.6 -17 5.3 -0.5 -0.3 -1.5 -0.7 -3.7 -1.1 -0.3 -0.1 -0.6 -0.1 -1 -0.2 -1.6 -0.2 -3.1 -0.4 -4.7 -0.4 -0.3 -0 -0.6 -0 -0.9 -0 -0.6 -0 -1.1 -0 -1.7 -0.1 -0.1 -0 -0.1 0 -0.2 0 -0.2 0 -0.4 0 -0.7 0 l -0.2 0 c -3 0.1 -5.4 0.3 -7.4 0.7 -0.2 0 -0.3 0.1 -0.4 0.1 -0.2 0.1 -0.4 0.1 -0.6 0.1 l -0.2 0 c -0.2 0 -0.4 0.1 -0.6 0.1 l -0.1 0 c -0.1 0 -0.2 0.1 -0.3 0.1 -0.4 0.1 -0.8 0.3 -1 0.4 -0.2 0.1 -0.3 0.2 -0.4 0.2 -3.7 -0.8 -14.6 -3.5 -16.9 -5.3 m 29 -5.8 c -0 0 -0.1 0 -0.1 0 -23.2 0.1 -28.8 3.8 -30 5 -0.2 0.2 -0.3 0.4 -0.4 0.7 -0.1 0.5 0.3 0.9 0.6 1.2 2.9 2.3 16 5.3 17.8 5.7 0.3 0.1 0.5 0 0.6 -0.2 0 -0 0.1 -0.1 0.4 -0.2 0.2 -0.1 0.4 -0.2 0.9 -0.3 0 -0 0.1 -0 0.1 -0 0.1 -0 0.1 -0 0.2 -0.1 l 0.1 -0 c 0.2 -0 0.3 -0.1 0.4 -0.1 0 -0 0 -0 0 -0 l 0.2 -0.1 c 0.2 -0 0.4 -0.1 0.6 -0.1 0.1 -0 0.2 -0 0.4 -0.1 1.9 -0.4 4.3 -0.6 7.1 -0.7 l 0.2 0 c 0 0 0 -0 0 -0 l 0 -0 c 0.2 -0 0.5 -0 0.7 -0 0 0 0.1 -0 0.1 -0 0.5 0 1.1 0 1.6 0.1 0.3 0 0.6 0 0.9 0 1.6 0.1 3.1 0.2 4.6 0.4 0.3 0.1 0.6 0.1 0.9 0.2 2.6 0.5 3.3 1 3.3 1 0.2 0.2 0.4 0.2 0.6 0.2 2.3 -0.4 15.1 -3.4 17.9 -5.6 0.1 -0.1 0.6 -0.5 0.6 -1 0 -0.3 -0.1 -0.6 -0.3 -0.8 -1.2 -1.2 -6.9 -4.9 -30.2 -5 l -0 0 z" class="globus"/><path inkscape:connector-curvature="0" id="path122" d="m 174.7 384.3 c -6.5 0 -12.9 -1.3 -18.9 -3.7 -0.7 -0.3 -1.5 -0.6 -2.1 -0.9 -0.9 -0.4 -1.8 -0.8 -2.6 -1.3 -23.5 -12.5 -33.2 -41.1 -22.1 -65.1 0 -0 0 -0.1 0.1 -0.1 0 -0 0 -0.1 0 -0.1 8.2 -17.5 26 -28.8 45.4 -28.8 6.4 0 12.7 1.2 18.7 3.6 0.7 0.3 1.6 0.7 2.4 1 0.9 0.4 1.6 0.8 2.4 1.2 23.6 12.4 33.4 41.1 22.3 65.2 -0 0 -0 0.1 -0.1 0.1 -0 0.1 -0.1 0.1 -0.1 0.2 -8.2 17.4 -26 28.7 -45.3 28.7 m -0.3 -101.4 c -9.7 0 -19.1 2.7 -27.3 7.8 -8.4 5.2 -15.1 12.8 -19.3 21.8 -0 0 -0 0.1 -0.1 0.1 -0 0 -0 0.1 -0 0.1 -11.4 24.7 -1.4 54.1 22.7 66.9 0.8 0.5 1.7 0.9 2.7 1.3 0.7 0.3 1.4 0.7 2.2 0.9 6.2 2.5 12.8 3.8 19.4 3.8 9.6 0 19.1 -2.7 27.3 -7.8 8.4 -5.2 15.1 -12.7 19.3 -21.7 0 -0.1 0 -0.1 0.1 -0.1 0 -0.1 0.1 -0.1 0.1 -0.2 11.4 -24.8 1.4 -54.2 -22.9 -67 -0.8 -0.4 -1.6 -0.8 -2.5 -1.2 -0.8 -0.4 -1.7 -0.8 -2.5 -1.1 -6.2 -2.5 -12.6 -3.7 -19.2 -3.7" class="globus"/><path inkscape:connector-curvature="0" id="path126" d="m 197 278 c -0.3 0 -0.5 0.2 -0.6 0.4 l -0.1 0.2 -3.5 8.2 c -0.1 0.3 0 0.7 0.4 0.9 0.3 0.1 0.7 -0 0.9 -0.4 l 3.4 -7.9 c 1.7 0.3 2.5 0.6 3.7 1.7 l -3.4 7.9 c -0.1 0.3 0 0.7 0.4 0.9 0.3 0.1 0.7 -0 0.9 -0.4 l 3.6 -8.3 c 0.1 -0.3 0 -0.6 -0.2 -0.8 -1.7 -1.5 -2.9 -2 -5.3 -2.4 -0 -0 -0.1 -0 -0.1 -0" class="globus"/><path inkscape:connector-curvature="0" id="path146" d="m 179 271.8 c -0.4 0 -0.7 0.3 -0.7 0.7 l 0 2 c 0 0.4 0.3 0.7 0.7 0.7 0.4 0 0.7 -0.3 0.7 -0.7 l 0 -2 c 0 -0.4 -0.3 -0.7 -0.7 -0.7" class="globus"/><path inkscape:connector-curvature="0" id="path150" d="m 173.5 271.8 c -0.4 0 -0.7 0.3 -0.7 0.7 0 0.8 -0 1.9 -0 1.9 l 1.4 0 c 0 0 0 -1.1 0 -1.9 0 -0.4 -0.3 -0.7 -0.7 -0.7" class="globus"/><path inkscape:connector-curvature="0" id="path154" d="m 150.7 378.3 c -0.3 0 -0.5 0.2 -0.6 0.4 l -1.6 3.7 c -0.1 0.3 -0.1 0.6 0.1 0.8 0.3 0.3 0.7 0.3 1 -0 l 0.1 -0.1 0.1 -0.1 1.6 -3.7 c 0.1 -0.3 -0 -0.7 -0.3 -0.9 -0.1 -0 -0.2 -0.1 -0.3 -0.1" class="globus"/><path inkscape:connector-curvature="0" id="path158" d="m 155.5 380.6 c -0.3 0 -0.5 0.1 -0.6 0.4 l -1.7 3.7 c -0.2 0.3 -0 0.7 0.3 0.9 0.3 0.2 0.7 0 0.9 -0.3 l 1.7 -3.7 c 0.2 -0.3 0 -0.7 -0.3 -0.9 -0.1 -0 -0.2 -0.1 -0.3 -0.1" class="globus"/></g></svg>
-      <p class="shirt_text" data-study="{{shirtStudiengang.toLowerCase()}}" ng-class="shirtAufdruck"> | münster</p>
+    <div class="shirt" ng-class="shirt.shirtFarbe">
+      <p class="globus" ng-class="shirt.shirtAufdruck">g</p>
+      <p class="shirt_text" data-study="{{shirt.shirtStudiengang.toLowerCase()}}" ng-class="shirt.shirtAufdruck"> | münster</p>
     </div>
     <div class="selector_container">
-      <input id="shirt_aufdruck_weiss" type="radio" value="weiss" ng-model="shirtAufdruck" />
-      <label class="radio_label selector_label white" for="shirt_aufdruck_weiss"></label>
-      <input id="shirt_aufdruck_neon_gruen" type="radio" value="neon_gruen" ng-model="shirtAufdruck" />
-      <label class="radio_label selector_label neon_gruen" for="shirt_aufdruck_neon_gruen">N</label>
-      <input id="shirt_aufdruck_rot" type="radio" value="rot" ng-model="shirtAufdruck" />
-      <label class="radio_label selector_label red" for="shirt_aufdruck_rot"></label>
-      <input id="shirt_aufdruck_neon_pink" type="radio" value="neon_pink" ng-model="shirtAufdruck" />
-      <label class="radio_label selector_label neon_pink" for="shirt_aufdruck_neon_pink">N</label>
-      <input id="shirt_aufdruck_blau" type="radio" value="blau" ng-model="shirtAufdruck" />
-      <label class="radio_label selector_label blau" for="shirt_aufdruck_blau"></label>
-      <input id="shirt_aufdruck_hellblau" type="radio" value="hellblau" ng-model="shirtAufdruck" />
-      <label class="radio_label selector_label hellblau" for="shirt_aufdruck_hellblau"></label>
-      <input id="shirt_aufdruck_neon_gelb" type="radio" value="neon_gelb" ng-model="shirtAufdruck" />
-      <label class="radio_label selector_label neon_gelb" for="shirt_aufdruck_neon_gelb">N</label>
-      <input id="shirt_aufdruck_gelb" type="radio" value="gelb" ng-model="shirtAufdruck" />
-      <label class="radio_label selector_label gelb" for="shirt_aufdruck_gelb"></label>
-      <input id="shirt_aufdruck_beige" type="radio" value="beige" ng-model="shirtAufdruck" />
-      <label class="radio_label selector_label beige" for="shirt_aufdruck_beige"></label>
-      <input id="shirt_aufdruck_schwarz" type="radio" value="schwarz" ng-model="shirtAufdruck" />
-      <label class="radio_label selector_label black" for="shirt_aufdruck_schwarz"></label>
-      <input id="shirt_aufdruck_kackbraun" type="radio" value="kackbraun" ng-model="shirtAufdruck" />
-      <label class="radio_label selector_label kackbraun" for="shirt_aufdruck_kackbraun"></label>
-      <input id="shirt_aufdruck_orange" type="radio" value="orange" ng-model="shirtAufdruck" />
-      <label class="radio_label selector_label orange" for="shirt_aufdruck_orange"></label>
-      <input id="shirt_aufdruck_neon_orange" type="radio" value="neon_orange" ng-model="shirtAufdruck" />
-      <label class="radio_label selector_label neon_orange" for="shirt_aufdruck_neon_orange">N</label>
+      <input id="shirt_aufdruck_Weiss" type="radio" value="Weiss" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label Weiss" for="shirt_aufdruck_Weiss" title="Weiß"></label>
+      <input id="shirt_aufdruck_NeonGrün" type="radio" value="NeonGrün" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label NeonGrün" for="shirt_aufdruck_NeonGrün" title="Neon Grün">N</label>
+      <input id="shirt_aufdruck_Rot" type="radio" value="Rot" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label Rot" for="shirt_aufdruck_Rot" title="Rot"></label>
+      <input id="shirt_aufdruck_NeonPink" type="radio" value="NeonPink" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label NeonPink" for="shirt_aufdruck_NeonPink" title="Neon Pink">N</label>
+      <input id="shirt_aufdruck_Blau" type="radio" value="Blau" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label Blau" for="shirt_aufdruck_Blau" title="Blau"></label>
+      <input id="shirt_aufdruck_Hellblau" type="radio" value="Hellblau" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label Hellblau" for="shirt_aufdruck_Hellblau" title="Hellblau"></label>
+      <input id="shirt_aufdruck_NeonGelb" type="radio" value="NeonGelb" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label NeonGelb" for="shirt_aufdruck_NeonGelb" title="Neon Gelb">N</label>
+      <input id="shirt_aufdruck_Gelb" type="radio" value="Gelb" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label Gelb" for="shirt_aufdruck_Gelb" title="Gelb"></label>
+      <input id="shirt_aufdruck_Beige" type="radio" value="Beige" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label Beige" for="shirt_aufdruck_Beige" title="Beige"></label>
+      <input id="shirt_aufdruck_Schwarz" type="radio" value="Schwarz" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label Schwarz" for="shirt_aufdruck_Schwarz" title="Schwarz"></label>
+      <input id="shirt_aufdruck_Kackbraun" type="radio" value="Kackbraun" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label Kackbraun" for="shirt_aufdruck_Kackbraun" title="Kackbraun"></label>
+      <input id="shirt_aufdruck_Orange" type="radio" value="Orange" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label Orange" for="shirt_aufdruck_Orange" title="Orange"></label>
+      <input id="shirt_aufdruck_NeonOrange" type="radio" value="NeonOrange" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label NeonOrange" for="shirt_aufdruck_NeonOrange" title="Neon Orange">N</label>
+      <input type="hidden" ng-model="shirt.shirtAufdruck" required>
     </div>
   </div>
   <div class="actions">
-    <input type="submit" value="Neue Bestellung" />
+    Shirt: {{shirt.shirtFarbe}}<br />Aufdruck: {{shirt.shirtAufdruck}}
+    <button ng-click="addShirt()" ng-disabled="form.$invalid || isUnchanged(shirt)">Neue Bestellung</button>
   </div>
 
 </form>
 </div>
 <div id="tab">
   <table>
-    <thead>
+    <tbody>
       <tr>
+        <td colspan="8" class="tabhead">Geoinformatik:</td>
+      </tr>
+      <tr>
+        <td>Nr.</td>
         <td>Name</td>
         <td>E-Mail</td>
         <td>Anzahl</td>
-        <td>Studiengang</td>
         <td>Geschlecht</td>
         <td>Größe</td>
         <td>Farbe</td>
         <td>Aufdruck</td>
       </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="shirt in shirts">
+      <tr ng-repeat="shirt in shirts | filter:'GI'">
+        <td>{{$index + 1}}</td>
         <td>{{shirt.name}}</td>
         <td>{{shirt.email}}</td>
         <td>{{shirt.anzahl}}</td>
-        <td>{{shirt.studiengang}}</td>
+        <td>{{shirt.geschlecht}}</td>
+        <td>{{shirt.groesse}}</td>
+        <td>{{shirt.farbe}}</td>
+        <td>{{shirt.aufdruck}}</td>
+      </tr>
+      <tr>
+        <td colspan="8" class="tabhead">Landschaftsökologie:</td>
+      </tr>
+      <tr>
+        <td>Nr.</td>
+        <td>Name</td>
+        <td>E-Mail</td>
+        <td>Anzahl</td>
+        <td>Geschlecht</td>
+        <td>Größe</td>
+        <td>Farbe</td>
+        <td>Aufdruck</td>
+      </tr>
+      <tr ng-repeat="shirt in shirts | filter:'LÖK'">
+        <td>{{$index + 1}}</td>
+        <td>{{shirt.name}}</td>
+        <td>{{shirt.email}}</td>
+        <td>{{shirt.anzahl}}</td>
+        <td>{{shirt.geschlecht}}</td>
+        <td>{{shirt.groesse}}</td>
+        <td>{{shirt.farbe}}</td>
+        <td>{{shirt.aufdruck}}</td>
+      </tr>
+      <tr>
+        <td colspan="8" class="tabhead">Geographie:</td>
+      </tr>
+      <tr>
+        <td>Nr.</td>
+        <td>Name</td>
+        <td>E-Mail</td>
+        <td>Anzahl</td>
+        <td>Geschlecht</td>
+        <td>Größe</td>
+        <td>Farbe</td>
+        <td>Aufdruck</td>
+      </tr>
+      <tr ng-repeat="shirt in shirts | filter:'GEO'">
+        <td>{{$index + 1}}</td>
+        <td>{{shirt.name}}</td>
+        <td>{{shirt.email}}</td>
+        <td>{{shirt.anzahl}}</td>
         <td>{{shirt.geschlecht}}</td>
         <td>{{shirt.groesse}}</td>
         <td>{{shirt.farbe}}</td>
         <td>{{shirt.aufdruck}}</td>
       </tr>
     </tbody>
+  </table>
 </div>
  
 </body>
