@@ -4,6 +4,6 @@
     "dependencies": {
         "angular": "latest",
         "jquery": "latest",
-        "angularLocalStorage": "latest"
+        "ngstorage": "latest"
     }
 }

@@ -1,11 +1,11 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="shirtApp">
 <head>
 <meta charset="utf-8">
 <title>T-Shirt Bestellliste</title>
 <script src="bower_components/jquery/jquery.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angularLocalStorage/src/angularLocalStorage.js"></script>
+<script src="bower_components/ngstorage/ngStorage.js"></script>
 <script src="json2csv.js"></script>
 <style type="text/css">
 #tab {
@@ -273,8 +273,11 @@ tr.tabhead {
 }
 </style>
 <script type="text/javascript">
-  ShirtCtrl = function($scope) {
-    $scope.shirts = [];
+  angular.module('shirtApp', ['ngStorage']).controller('ShirtCtrl',function($scope,$localStorage) {
+    $scope.$storage = $localStorage.$default({
+      shirts: []
+    });
+
     $scope.master = {
       shirtName:        '',
       shirtEmail:       '',
@@ -286,21 +289,25 @@ tr.tabhead {
       shirtAufdruck:    ''
     };
 
+    $scope.deleteShirts = function() {
+      delete $localStorage.shirts;
+    };
+
     $scope.femaleSelected = function() {
       return ($scope.shirt.shirtGeschlecht === 'Damen' ? true : false);
     };
 
     $scope.addShirt = function() {
-      $scope.shirts.push({
-          name:         $scope.shirt.shirtName,
-          email:        $scope.shirt.shirtEmail,
-          anzahl:       $scope.shirt.shirtAnzahl,
-          studiengang:  $scope.shirt.shirtStudiengang,
-          geschlecht:   $scope.shirt.shirtGeschlecht,
-          groesse:      $scope.shirt.shirtGroesse,
-          farbe:        $scope.shirt.shirtFarbe,
-          aufdruck:     $scope.shirt.shirtAufdruck
-        });
+      $scope.$storage.shirts.push({
+        name:         $scope.shirt.shirtName,
+        email:        $scope.shirt.shirtEmail,
+        anzahl:       $scope.shirt.shirtAnzahl,
+        studiengang:  $scope.shirt.shirtStudiengang,
+        geschlecht:   $scope.shirt.shirtGeschlecht,
+        groesse:      $scope.shirt.shirtGroesse,
+        farbe:        $scope.shirt.shirtFarbe,
+        aufdruck:     $scope.shirt.shirtAufdruck
+      });
       $scope.reset();
     };
 
@@ -316,21 +323,21 @@ tr.tabhead {
       var geo_jsonexport = [];
       var gi_jsonexport = [];
       var lok_jsonexport = [];
-      angular.copy($scope.shirts, geo_jsonexport);
-      angular.copy($scope.shirts, gi_jsonexport);
-      angular.copy($scope.shirts, lok_jsonexport);
-      var geo_csv = json2csv(geo_jsonexport);
-      var gi_csv = json2csv(gi_jsonexport);
-      var lok_csv = json2csv(lok_jsonexport);
+      angular.copy($scope.$storage.shirts, geo_jsonexport);
+      angular.copy($scope.$storage.shirts, gi_jsonexport);
+      angular.copy($scope.$storage.shirts, lok_jsonexport);
+      var geo_csv = json2csv(geo_jsonexport.filter( function(obj) { return obj.studiengang == 'GEO' } ));
+      var gi_csv = json2csv(gi_jsonexport.filter( function(obj) { return obj.studiengang == 'GI' } ));
+      var lok_csv = json2csv(lok_jsonexport.filter( function(obj) { return obj.studiengang == 'Lök' } ));
       window.open("data:text/csv;charset=utf-8," + escape(geo_csv));
       window.open("data:text/csv;charset=utf-8," + escape(gi_csv));
       window.open("data:text/csv;charset=utf-8," + escape(lok_csv));
     };
 
     $scope.reset();
-  };
+  });
   window.onbeforeunload = function() {
-    return false;
+   //return false;
   }
 </script>
 </head>
@@ -454,7 +461,7 @@ tr.tabhead {
         <td>Farbe</td>
         <td>Aufdruck</td>
       </tr>
-      <tr ng-repeat="shirt in shirts | filter:'GI'">
+      <tr ng-repeat="shirt in $storage.shirts | filter:'GI'">
         <td>{{$index + 1}}</td>
         <td>{{shirt.name}}</td>
         <td>{{shirt.email}}</td>
@@ -477,7 +484,7 @@ tr.tabhead {
         <td>Farbe</td>
         <td>Aufdruck</td>
       </tr>
-      <tr ng-repeat="shirt in shirts | filter:'Lök'">
+      <tr ng-repeat="shirt in $storage.shirts | filter:'Lök'">
         <td>{{$index + 1}}</td>
         <td>{{shirt.name}}</td>
         <td>{{shirt.email}}</td>
@@ -500,7 +507,7 @@ tr.tabhead {
         <td>Farbe</td>
         <td>Aufdruck</td>
       </tr>
-      <tr ng-repeat="shirt in shirts | filter:'GEO'">
+      <tr ng-repeat="shirt in $storage.shirts | filter:'GEO'">
         <td>{{$index + 1}}</td>
         <td>{{shirt.name}}</td>
         <td>{{shirt.email}}</td>
@@ -512,6 +519,7 @@ tr.tabhead {
       </tr>
     </tbody>
   </table>
+  <a ng-click="deleteShirts()" href="#">Alle löschen</a>
 </div>
 
 </body>
