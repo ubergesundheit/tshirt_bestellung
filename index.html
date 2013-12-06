@@ -264,6 +264,11 @@ p.Rot {
 
 td.tabhead {
   font-weight: bold;
+  background-color: lightgrey;
+}
+
+tr.tabhead {
+  background-color: lightgrey;
   border-bottom: 2px solid black;
 }
 </style>
@@ -308,12 +313,18 @@ td.tabhead {
     };
 
     $scope.download = function() {
-      var gi_csv = json2csv($scope.shirts.filter( function(obj) { return obj.studiengang == 'GI' } ));
-      window.open("data:text/csv;charset=utf-8," + gi_csv);
-      var loek_csv = json2csv($scope.shirts.filter( function(obj) { return obj.studiengang == 'LÖK' } ));
-      window.open("data:text/csv;charset=utf-8," + loek_csv);
-      var geo_csv = json2csv($scope.shirts.filter( function(obj) { return obj.studiengang == 'GEO' } ));
-      window.open("data:text/csv;charset=utf-8," + geo_csv);
+      var geo_jsonexport = [];
+      var gi_jsonexport = [];
+      var lok_jsonexport = [];
+      angular.copy($scope.shirts, geo_jsonexport);
+      angular.copy($scope.shirts, gi_jsonexport);
+      angular.copy($scope.shirts, lok_jsonexport);
+      var geo_csv = json2csv(geo_jsonexport);
+      var gi_csv = json2csv(gi_jsonexport);
+      var lok_csv = json2csv(lok_jsonexport);
+      window.open("data:text/csv;charset=utf-8," + escape(geo_csv));
+      window.open("data:text/csv;charset=utf-8," + escape(gi_csv));
+      window.open("data:text/csv;charset=utf-8," + escape(lok_csv));
     };
 
     $scope.reset();
@@ -427,13 +438,13 @@ td.tabhead {
 </form>
 </div>
 <div id="tab">
-  <a ng-click="download()">Daten herunterladen</a>
+  <a ng-click="download()" href="#">Daten herunterladen</a>
   <table>
     <tbody>
       <tr>
         <td colspan="8" class="tabhead">Geoinformatik:</td>
       </tr>
-      <tr>
+      <tr class="tabhead">
         <td>Nr.</td>
         <td>Name</td>
         <td>E-Mail</td>
@@ -456,7 +467,7 @@ td.tabhead {
       <tr>
         <td colspan="8" class="tabhead">Landschaftsökologie:</td>
       </tr>
-      <tr>
+      <tr class="tabhead">
         <td>Nr.</td>
         <td>Name</td>
         <td>E-Mail</td>
@@ -466,7 +477,7 @@ td.tabhead {
         <td>Farbe</td>
         <td>Aufdruck</td>
       </tr>
-      <tr ng-repeat="shirt in shirts | filter:'LÖK'">
+      <tr ng-repeat="shirt in shirts | filter:'Lök'">
         <td>{{$index + 1}}</td>
         <td>{{shirt.name}}</td>
         <td>{{shirt.email}}</td>
@@ -479,7 +490,7 @@ td.tabhead {
       <tr>
         <td colspan="8" class="tabhead">Geographie:</td>
       </tr>
-      <tr>
+      <tr class="tabhead">
         <td>Nr.</td>
         <td>Name</td>
         <td>E-Mail</td>
