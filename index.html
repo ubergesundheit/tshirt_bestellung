@@ -6,6 +6,7 @@
 <script src="bower_components/jquery/jquery.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angularLocalStorage/src/angularLocalStorage.js"></script>
+<script src="json2csv.js"></script>
 <style type="text/css">
 #tab {
   width: 56%;
@@ -29,7 +30,7 @@ div.field, div.actions {
 
 input {
   height: 2em;
-  font-size: 1.2em; 
+  font-size: 1.2em;
 }
 
 button {
@@ -73,7 +74,7 @@ input[type="radio"] {
 }
 
 .shirt_text:before {
-  content: attr(data-study); 
+  content: attr(data-study);
 }
 
 .selector_container {
@@ -85,7 +86,7 @@ input[type="radio"] {
 @font-face {
   font-family: globusFont;
   src: url('globus_font.ttf');
-} 
+}
 
 .globus {
   display:inline;
@@ -97,7 +98,7 @@ input[type="radio"] {
 
 input[type="radio"]:checked + label {
   border: 3px solid red;
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 input[type="radio"]:disabled + label {
@@ -301,9 +302,18 @@ td.tabhead {
     $scope.reset = function() {
       $scope.shirt = angular.copy($scope.master);
     };
-     
+
     $scope.isUnchanged = function(shirt) {
       return angular.equals(shirt, $scope.master);
+    };
+
+    $scope.download = function() {
+      var gi_csv = json2csv($scope.shirts.filter( function(obj) { return obj.studiengang == 'GI' } ));
+      window.open("data:text/csv;charset=utf-8," + gi_csv);
+      var loek_csv = json2csv($scope.shirts.filter( function(obj) { return obj.studiengang == 'LÖK' } ));
+      window.open("data:text/csv;charset=utf-8," + loek_csv);
+      var geo_csv = json2csv($scope.shirts.filter( function(obj) { return obj.studiengang == 'GEO' } ));
+      window.open("data:text/csv;charset=utf-8," + geo_csv);
     };
 
     $scope.reset();
@@ -417,6 +427,7 @@ td.tabhead {
 </form>
 </div>
 <div id="tab">
+  <a ng-click="download()">Daten herunterladen</a>
   <table>
     <tbody>
       <tr>
@@ -491,6 +502,6 @@ td.tabhead {
     </tbody>
   </table>
 </div>
- 
+
 </body>
 </html>
