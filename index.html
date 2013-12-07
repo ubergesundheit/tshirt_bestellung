@@ -108,15 +108,15 @@ input[type="radio"]:disabled + label {
   background-color: lightgrey;
 }
 
-.geo {
+.GEO {
   background-color: orange;
 }
 
-.gi {
+.GI {
   background-color: #336699;
 }
 
-.loek {
+.LÖK {
   background-color: green;
 }
 
@@ -124,11 +124,11 @@ input[type="radio"]:disabled + label {
   background-color: black;
 }
 
-.herren {
+.Herren {
   background-color: cornflowerblue;
 }
 
-.damen {
+.Damen {
   background-color: lightcoral;
 }
 
@@ -304,6 +304,55 @@ tr.tabhead {
       shirts: []
     });
 
+    $scope.studies = [
+      "GEO",
+      "GI",
+      "LÖK"
+    ];
+
+    $scope.gender = [
+      "Herren",
+      "Damen"
+    ];
+
+    $scope.sizes = [
+      "XXL",
+      "XL",
+      "L",
+      "M",
+      "S"
+    ];
+
+    $scope.colors = [
+      "Black",
+      "White",
+      "Natural",
+      "Navy",
+      "RiverBlue",
+      "Chocolate",
+      "Red",
+      "CityGreen"
+    ];
+
+    $scope.prints = [
+      "Weiß",
+      "NeonGrün",
+      "Rot",
+      "NeonPink",
+      "Blau",
+      "Hellblau",
+      "NeonGelb",
+      "Gelb",
+      "Beige",
+      "Schwarz",
+      "Kackbraun",
+      "Orange",
+      "NeonOrange",
+      "Lila",
+      "Türkis",
+      "Grün"
+    ];
+
     $scope.master = {
       shirtName:        '',
       shirtEmail:       '',
@@ -329,6 +378,10 @@ tr.tabhead {
 
     $scope.femaleSelected = function() {
       return ($scope.shirt.shirtGeschlecht === 'Damen' ? true : false);
+    };
+
+    $scope.bigN = function(what) {
+      return (what.indexOf("Neon") != -1 ? "N" : "");
     };
 
     $scope.addShirt = function() {
@@ -389,52 +442,32 @@ tr.tabhead {
     <input class="form-input" type="number" min="1" ng-model="shirt.shirtAnzahl" />
   </div>
   <div class="field">
-    <input id="shirt_studiengang_geo" type="radio" value="GEO" ng-model="shirt.shirtStudiengang" />
-    <label class="radio_label geo" for="shirt_studiengang_geo">GEO</label>
-    <input id="shirt_studiengang_loek" type="radio" value="Lök" ng-model="shirt.shirtStudiengang" />
-    <label class="radio_label loek" for="shirt_studiengang_loek">Lök</label>
-    <input id="shirt_studiengang_gi" type="radio" value="GI" ng-model="shirt.shirtStudiengang" />
-    <label class="radio_label gi" for="shirt_studiengang_gi">GI</label>
+    <span ng-repeat="study in studies">
+      <input id="shirt_studiengang_{{study}}" type="radio" value="{{study}}" ng-model="shirt.shirtStudiengang" />
+      <label class="radio_label {{study}}" for="shirt_studiengang_{{study}}">{{study}}</label>
+    </span>
     <input type="hidden" ng-model="shirt.shirtStudiengang" required />
   </div>
   <div class="field">
-    <input id="shirt_geschlecht_herren" type="radio" value="Herren" ng-model="shirt.shirtGeschlecht" />
-    <label class="radio_label herren" for="shirt_geschlecht_herren">Herren</label>
-    <input id="shirt_geschlecht_damen" type="radio" value="Damen" ng-model="shirt.shirtGeschlecht" />
-    <label class="radio_label damen" for="shirt_geschlecht_damen">Damen</label>
+    <span ng-repeat="gen in gender">
+      <input id="shirt_geschlecht_{{gen}}" type="radio" value="{{gen}}" ng-model="shirt.shirtGeschlecht" />
+      <label class="radio_label {{gen}}" for="shirt_geschlecht_{{gen}}">{{gen}}</label>
+    </span>
     <input type="hidden" ng-model="shirt.shirtGeschlecht" required>
   </div>
   <div class="field">
-    <input id="shirt_groesse_xxl" type="radio" value="XXL" ng-model="shirt.shirtGroesse" ng-disabled="femaleSelected()" />
-    <label class="radio_label" for="shirt_groesse_xxl">XXL</label>
-    <input id="shirt_groesse_xl" type="radio" value="XL" ng-model="shirt.shirtGroesse" />
-    <label class="radio_label" for="shirt_groesse_xl">XL</label>
-    <input id="shirt_groesse_l" type="radio" value="L" ng-model="shirt.shirtGroesse" />
-    <label class="radio_label" for="shirt_groesse_l">L</label>
-    <input id="shirt_groesse_m" type="radio" value="M" ng-model="shirt.shirtGroesse" />
-    <label class="radio_label" for="shirt_groesse_m">M</label>
-    <input id="shirt_groesse_s" type="radio" value="S" ng-model="shirt.shirtGroesse" />
-    <label class="radio_label" for="shirt_groesse_s">S</label>
+    <span ng-repeat="size in sizes">
+      <input id="shirt_groesse_{{size}}" type="radio" value="{{size}}" ng-model="shirt.shirtGroesse" />
+      <label class="radio_label" for="shirt_groesse_{{size}}">{{size}}</label>
+    </span>
     <input type="hidden" ng-model="shirt.shirtGroesse" required>
   </div>
   <div class="field preview">
     <div class="selector_container" style="margin-left:18%;">
-      <input id="shirt_farbe_Black" type="radio" value="Black" ng-model="shirt.shirtFarbe" />
-      <label class="radio_label selector_label Black" for="shirt_farbe_Black" title="Black"></label>
-      <input id="shirt_farbe_CityGreen" type="radio" value="CityGreen" ng-model="shirt.shirtFarbe" />
-      <label class="radio_label selector_label CityGreen" for="shirt_farbe_CityGreen" title="City Green"></label>
-      <input id="shirt_farbe_Navy" type="radio" value="Navy" ng-model="shirt.shirtFarbe" />
-      <label class="radio_label selector_label Navy" for="shirt_farbe_Navy" title="Navy"></label>
-      <input id="shirt_farbe_RiverBlue" type="radio" value="RiverBlue" ng-model="shirt.shirtFarbe" />
-      <label class="radio_label selector_label RiverBlue" for="shirt_farbe_RiverBlue" title="River Blue"></label>
-      <input id="shirt_farbe_Chocolate" type="radio" value="Chocolate" ng-model="shirt.shirtFarbe" />
-      <label class="radio_label selector_label Chocolate" for="shirt_farbe_Chocolate" title="Chocolate"></label>
-      <input id="shirt_farbe_Red" type="radio" value="Red" ng-model="shirt.shirtFarbe" />
-      <label class="radio_label selector_label Red" for="shirt_farbe_Red" title="Red"></label>
-      <input id="shirt_farbe_White" type="radio" value="White" ng-model="shirt.shirtFarbe" />
-      <label class="radio_label selector_label White" for="shirt_farbe_White" title="White"></label>
-      <input id="shirt_farbe_Natural" type="radio" value="Natural" ng-model="shirt.shirtFarbe" />
-      <label class="radio_label selector_label Natural" for="shirt_farbe_Natural" title="Natural"></label>
+      <span ng-repeat="color in colors">
+        <input id="shirt_farbe_{{color}}" type="radio" value="{{color}}" ng-model="shirt.shirtFarbe" />
+        <label class="radio_label selector_label {{color}}" for="shirt_farbe_{{color}}" title="{{color}}"></label>
+      </span>
       <input type="hidden" ng-model="shirt.shirtFarbe" required>
     </div>
     <div class="shirt" ng-class="shirt.shirtFarbe">
@@ -442,38 +475,10 @@ tr.tabhead {
       <p class="shirt_text" data-study="{{shirt.shirtStudiengang.toLowerCase()}}" ng-class="shirt.shirtAufdruck"> | münster</p>
     </div>
     <div class="selector_container">
-      <input id="shirt_aufdruck_Weiss" type="radio" value="Weiss" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label Weiss" for="shirt_aufdruck_Weiss" title="Weiß"></label>
-      <input id="shirt_aufdruck_NeonGrün" type="radio" value="NeonGrün" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label NeonGrün" for="shirt_aufdruck_NeonGrün" title="Neon Grün">N</label>
-      <input id="shirt_aufdruck_Rot" type="radio" value="Rot" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label Rot" for="shirt_aufdruck_Rot" title="Rot"></label>
-      <input id="shirt_aufdruck_NeonPink" type="radio" value="NeonPink" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label NeonPink" for="shirt_aufdruck_NeonPink" title="Neon Pink">N</label>
-      <input id="shirt_aufdruck_Blau" type="radio" value="Blau" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label Blau" for="shirt_aufdruck_Blau" title="Blau"></label>
-      <input id="shirt_aufdruck_Hellblau" type="radio" value="Hellblau" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label Hellblau" for="shirt_aufdruck_Hellblau" title="Hellblau"></label>
-      <input id="shirt_aufdruck_NeonGelb" type="radio" value="NeonGelb" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label NeonGelb" for="shirt_aufdruck_NeonGelb" title="Neon Gelb">N</label>
-      <input id="shirt_aufdruck_Gelb" type="radio" value="Gelb" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label Gelb" for="shirt_aufdruck_Gelb" title="Gelb"></label>
-      <input id="shirt_aufdruck_Beige" type="radio" value="Beige" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label Beige" for="shirt_aufdruck_Beige" title="Beige"></label>
-      <input id="shirt_aufdruck_Schwarz" type="radio" value="Schwarz" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label Schwarz" for="shirt_aufdruck_Schwarz" title="Schwarz"></label>
-      <input id="shirt_aufdruck_Kackbraun" type="radio" value="Kackbraun" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label Kackbraun" for="shirt_aufdruck_Kackbraun" title="Kackbraun"></label>
-      <input id="shirt_aufdruck_Orange" type="radio" value="Orange" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label Orange" for="shirt_aufdruck_Orange" title="Orange"></label>
-      <input id="shirt_aufdruck_NeonOrange" type="radio" value="NeonOrange" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label NeonOrange" for="shirt_aufdruck_NeonOrange" title="Neon Orange">N</label>
-      <input id="shirt_aufdruck_Lila" type="radio" value="Lila" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label Lila" for="shirt_aufdruck_Lila" title="Lila"></label>
-      <input id="shirt_aufdruck_Türkis" type="radio" value="Türkis" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label Türkis" for="shirt_aufdruck_Türkis" title="Türkis"></label>
-      <input id="shirt_aufdruck_Grün" type="radio" value="Grün" ng-model="shirt.shirtAufdruck" />
-      <label class="radio_label selector_label Grün" for="shirt_aufdruck_Grün" title="Grün"></label>
+      <span ng-repeat="print in prints">
+        <input id="shirt_aufdruck_{{print}}" type="radio" value="{{print}}" ng-model="shirt.shirtAufdruck" />
+        <label class="radio_label selector_label {{print}}" for="shirt_aufdruck_{{print}}" title="{{print}}">{{bigN(print)}}</label>
+      </span>
       <input type="hidden" ng-model="shirt.shirtAufdruck" required>
     </div>
   </div>
@@ -556,13 +561,13 @@ tr.tabhead {
       <tr ng-repeat="shirt in $storage.shirts | filter:'GEO'">
         <td><a ng-click="deleteShirt(shirt)" href="#">&times;</a></td>
         <td>{{$index + 1}}</td>
-        <td><a href="#" e-required editable-text="shirt.name">{{ shirt.name }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.email">{{ shirt.email }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.anzahl">{{ shirt.anzahl }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.geschlecht">{{ shirt.geschlecht }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.groesse">{{ shirt.groesse }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.farbe">{{ shirt.farbe }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.aufdruck">{{ shirt.aufdruck }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.name" buttons="no">{{ shirt.name }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.email" buttons="no">{{ shirt.email }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.anzahl" buttons="no" e-min="1">{{ shirt.anzahl }}</a></td>
+        <td><a href="#" e-required editable-select="shirt.geschlecht" e-ng-options="g for g in gender" buttons="no">{{ shirt.geschlecht }}</a></td>
+        <td><a href="#" e-required editable-select="shirt.groesse" e-ng-options="s for s in sizes" buttons="no">{{ shirt.groesse }}</a></td>
+        <td><a href="#" e-required editable-select="shirt.farbe" e-ng-options="f for f in colors" buttons="no">{{ shirt.farbe }}</a></td>
+        <td><a href="#" e-required editable-select="shirt.aufdruck" e-ng-options="p for p in prints" buttons="no">{{ shirt.aufdruck }}</a></td>
       </tr>
     </tbody>
   </table>
