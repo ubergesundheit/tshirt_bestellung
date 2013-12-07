@@ -6,7 +6,9 @@
 <script src="bower_components/jquery/jquery.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/ngstorage/ngStorage.js"></script>
+<script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
 <script src="json2csv.js"></script>
+<link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
 <style type="text/css">
 #tab {
   width: 56%;
@@ -297,7 +299,7 @@ tr.tabhead {
 }
 </style>
 <script type="text/javascript">
-  angular.module('shirtApp', ['ngStorage']).controller('ShirtCtrl',function($scope,$localStorage) {
+  angular.module('shirtApp', ['ngStorage', 'xeditable']).controller('ShirtCtrl',function($scope,$localStorage) {
     $scope.$storage = $localStorage.$default({
       shirts: []
     });
@@ -503,13 +505,13 @@ tr.tabhead {
       <tr ng-repeat="shirt in $storage.shirts | filter:'GI'">
         <td><a ng-click="deleteShirt(shirt)" href="#">&times;</a></td>
         <td>{{$index + 1}}</td>
-        <td>{{shirt.name}}</td>
-        <td>{{shirt.email}}</td>
-        <td>{{shirt.anzahl}}</td>
-        <td>{{shirt.geschlecht}}</td>
-        <td>{{shirt.groesse}}</td>
-        <td>{{shirt.farbe}}</td>
-        <td>{{shirt.aufdruck}}</td>
+        <td><a href="#" e-required editable-text="shirt.name">{{ shirt.name }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.email">{{ shirt.email }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.anzahl">{{ shirt.anzahl }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.geschlecht">{{ shirt.geschlecht }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.groesse">{{ shirt.groesse }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.farbe">{{ shirt.farbe }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.aufdruck">{{ shirt.aufdruck }}</a></td>
       </tr>
       <tr>
         <td colspan="9" class="tabhead">Landschaftsökologie:</td>
@@ -528,13 +530,13 @@ tr.tabhead {
       <tr ng-repeat="shirt in $storage.shirts | filter:'Lök'">
         <td><a ng-click="deleteShirt(shirt)" href="#">&times;</a></td>
         <td>{{$index + 1}}</td>
-        <td>{{shirt.name}}</td>
-        <td>{{shirt.email}}</td>
-        <td>{{shirt.anzahl}}</td>
-        <td>{{shirt.geschlecht}}</td>
-        <td>{{shirt.groesse}}</td>
-        <td>{{shirt.farbe}}</td>
-        <td>{{shirt.aufdruck}}</td>
+        <td><a href="#" e-required editable-text="shirt.name">{{ shirt.name }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.email">{{ shirt.email }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.anzahl">{{ shirt.anzahl }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.geschlecht">{{ shirt.geschlecht }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.groesse">{{ shirt.groesse }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.farbe">{{ shirt.farbe }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.aufdruck">{{ shirt.aufdruck }}</a></td>
       </tr>
       <tr>
         <td colspan="9" class="tabhead">Geographie:</td>
@@ -553,13 +555,13 @@ tr.tabhead {
       <tr ng-repeat="shirt in $storage.shirts | filter:'GEO'">
         <td><a ng-click="deleteShirt(shirt)" href="#">&times;</a></td>
         <td>{{$index + 1}}</td>
-        <td>{{shirt.name}}</td>
-        <td>{{shirt.email}}</td>
-        <td>{{shirt.anzahl}}</td>
-        <td>{{shirt.geschlecht}}</td>
-        <td>{{shirt.groesse}}</td>
-        <td>{{shirt.farbe}}</td>
-        <td>{{shirt.aufdruck}}</td>
+        <td><a href="#" e-required editable-text="shirt.name">{{ shirt.name }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.email">{{ shirt.email }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.anzahl">{{ shirt.anzahl }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.geschlecht">{{ shirt.geschlecht }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.groesse">{{ shirt.groesse }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.farbe">{{ shirt.farbe }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.aufdruck">{{ shirt.aufdruck }}</a></td>
       </tr>
     </tbody>
   </table>
