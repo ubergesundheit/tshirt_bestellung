@@ -30,12 +30,12 @@ div.field, div.actions {
   vertical-align: middle;
 }
 
-input {
-  height: 2em;
+input.form-input {
+  height: 1.3em;
   font-size: 1.2em;
 }
 
-button {
+button.form-input {
   margin-top: 0.5em;
   height: 2em;
   font-size: 1.2em;
@@ -379,14 +379,14 @@ tr.tabhead {
 <div id="form">
 <form accept-charset="UTF-8" name="form" novalidate>
   <div class="field">
-    <input placeholder="Name" type="text" ng-model="shirt.shirtName" required />
+    <input class="form-input" placeholder="Name" type="text" ng-model="shirt.shirtName" required />
   </div>
   <div class="field">
-    <input placeholder="E-Mail" type="email" ng-model="shirt.shirtEmail" required />
+    <input class="form-input" placeholder="E-Mail" type="email" ng-model="shirt.shirtEmail" required />
   </div>
   <div class="field">
     <label for="shirt_anzahl">Anzahl</label><br />
-    <input type="number" min="1" ng-model="shirt.shirtAnzahl" />
+    <input class="form-input" type="number" min="1" ng-model="shirt.shirtAnzahl" />
   </div>
   <div class="field">
     <input id="shirt_studiengang_geo" type="radio" value="GEO" ng-model="shirt.shirtStudiengang" />
