@@ -479,7 +479,8 @@ tr.tabhead {
   </div>
   <div class="actions">
     Shirt: {{shirt.shirtFarbe}}<br />Aufdruck: {{shirt.shirtAufdruck}}
-    <button ng-click="addShirt()" ng-disabled="form.$invalid || isUnchanged(shirt)">Neue Bestellung</button>
+    <input type="reset" />
+    <button class="form-input" ng-click="addShirt()" ng-disabled="form.$invalid || isUnchanged(shirt)">Neue Bestellung</button>
   </div>
 
 </form>
