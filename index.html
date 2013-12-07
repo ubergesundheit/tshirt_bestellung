@@ -511,13 +511,13 @@ tr.tabhead {
       <tr ng-repeat="shirt in $storage.shirts | filter:'GI'">
         <td><a ng-click="deleteShirt(shirt)" href="#">&times;</a></td>
         <td>{{$index + 1}}</td>
-        <td><a href="#" e-required editable-text="shirt.name">{{ shirt.name }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.email">{{ shirt.email }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.anzahl">{{ shirt.anzahl }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.geschlecht">{{ shirt.geschlecht }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.groesse">{{ shirt.groesse }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.farbe">{{ shirt.farbe }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.aufdruck">{{ shirt.aufdruck }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.name" buttons="no">{{ shirt.name }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.email" buttons="no">{{ shirt.email }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.anzahl" buttons="no" e-min="1">{{ shirt.anzahl }}</a></td>
+        <td><a href="#" e-required editable-select="shirt.geschlecht" e-ng-options="g for g in gender" buttons="no">{{ shirt.geschlecht }}</a></td>
+        <td><a href="#" e-required editable-select="shirt.groesse" e-ng-options="s for s in sizes" buttons="no">{{ shirt.groesse }}</a></td>
+        <td><a href="#" e-required editable-select="shirt.farbe" e-ng-options="f for f in colors" buttons="no">{{ shirt.farbe }}</a></td>
+        <td><a href="#" e-required editable-select="shirt.aufdruck" e-ng-options="p for p in prints" buttons="no">{{ shirt.aufdruck }}</a></td>
       </tr>
       <tr>
         <td colspan="9" class="tabhead">Landschaftsökologie:</td>
@@ -536,13 +536,13 @@ tr.tabhead {
       <tr ng-repeat="shirt in $storage.shirts | filter:'Lök'">
         <td><a ng-click="deleteShirt(shirt)" href="#">&times;</a></td>
         <td>{{$index + 1}}</td>
-        <td><a href="#" e-required editable-text="shirt.name">{{ shirt.name }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.email">{{ shirt.email }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.anzahl">{{ shirt.anzahl }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.geschlecht">{{ shirt.geschlecht }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.groesse">{{ shirt.groesse }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.farbe">{{ shirt.farbe }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.aufdruck">{{ shirt.aufdruck }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.name" buttons="no">{{ shirt.name }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.email" buttons="no">{{ shirt.email }}</a></td>
+        <td><a href="#" e-required editable-text="shirt.anzahl" buttons="no" e-min="1">{{ shirt.anzahl }}</a></td>
+        <td><a href="#" e-required editable-select="shirt.geschlecht" e-ng-options="g for g in gender" buttons="no">{{ shirt.geschlecht }}</a></td>
+        <td><a href="#" e-required editable-select="shirt.groesse" e-ng-options="s for s in sizes" buttons="no">{{ shirt.groesse }}</a></td>
+        <td><a href="#" e-required editable-select="shirt.farbe" e-ng-options="f for f in colors" buttons="no">{{ shirt.farbe }}</a></td>
+        <td><a href="#" e-required editable-select="shirt.aufdruck" e-ng-options="p for p in prints" buttons="no">{{ shirt.aufdruck }}</a></td>
       </tr>
       <tr>
         <td colspan="9" class="tabhead">Geographie:</td>
