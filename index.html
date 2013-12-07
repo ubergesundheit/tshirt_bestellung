@@ -262,6 +262,30 @@ p.Rot {
   color: red;
 }
 
+label.Lila {
+  background-color: darkorchid;
+}
+
+p.Lila {
+  color: darkorchid;
+}
+
+label.Türkis {
+  background-color: cyan;
+}
+
+p.Türkis {
+  color: cyan;
+}
+
+label.Grün {
+  background-color: darkgreen;
+}
+
+p.Grün {
+  color: darkgreen;
+}
+
 td.tabhead {
   font-weight: bold;
   background-color: lightgrey;
@@ -346,7 +370,7 @@ tr.tabhead {
   });
   window.onbeforeunload = function() {
    //return false;
-  }
+  };
 </script>
 </head>
 <body ng-controller="ShirtCtrl">
@@ -442,6 +466,12 @@ tr.tabhead {
       <label class="radio_label selector_label Orange" for="shirt_aufdruck_Orange" title="Orange"></label>
       <input id="shirt_aufdruck_NeonOrange" type="radio" value="NeonOrange" ng-model="shirt.shirtAufdruck" />
       <label class="radio_label selector_label NeonOrange" for="shirt_aufdruck_NeonOrange" title="Neon Orange">N</label>
+      <input id="shirt_aufdruck_Lila" type="radio" value="Lila" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label Lila" for="shirt_aufdruck_Lila" title="Lila"></label>
+      <input id="shirt_aufdruck_Türkis" type="radio" value="Türkis" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label Türkis" for="shirt_aufdruck_Türkis" title="Türkis"></label>
+      <input id="shirt_aufdruck_Grün" type="radio" value="Grün" ng-model="shirt.shirtAufdruck" />
+      <label class="radio_label selector_label Grün" for="shirt_aufdruck_Grün" title="Grün"></label>
       <input type="hidden" ng-model="shirt.shirtAufdruck" required>
     </div>
   </div>
