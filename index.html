@@ -293,6 +293,14 @@ tr.tabhead {
       delete $localStorage.shirts;
     };
 
+    $scope.deleteShirt = function(shirt) {
+      if (window.confirm("Wirklich dieses Shirt löschen?")) {
+        if ($scope.$storage.shirts.indexOf(shirt) != -1) {
+          $scope.$storage.shirts.splice($scope.$storage.shirts.indexOf(shirt), 1);
+        }
+      }
+    };
+
     $scope.femaleSelected = function() {
       return ($scope.shirt.shirtGeschlecht === 'Damen' ? true : false);
     };
@@ -329,9 +337,9 @@ tr.tabhead {
       var geo_csv = json2csv(geo_jsonexport.filter( function(obj) { return obj.studiengang == 'GEO' } ));
       var gi_csv = json2csv(gi_jsonexport.filter( function(obj) { return obj.studiengang == 'GI' } ));
       var lok_csv = json2csv(lok_jsonexport.filter( function(obj) { return obj.studiengang == 'Lök' } ));
-      window.open("data:text/csv;charset=utf-8," + escape(geo_csv));
-      window.open("data:text/csv;charset=utf-8," + escape(gi_csv));
-      window.open("data:text/csv;charset=utf-8," + escape(lok_csv));
+      window.open("data:text/csv;charset=utf-8," + escape(geo_csv), 'shirts_geo.csv');
+      window.open("data:text/csv;charset=utf-8," + escape(gi_csv), 'shirts_gi.csv');
+      window.open("data:text/csv;charset=utf-8," + escape(lok_csv), 'shirts_loek.csv');
     };
 
     $scope.reset();
@@ -449,9 +457,10 @@ tr.tabhead {
   <table>
     <tbody>
       <tr>
-        <td colspan="8" class="tabhead">Geoinformatik:</td>
+        <td colspan="9" class="tabhead">Geoinformatik:</td>
       </tr>
       <tr class="tabhead">
+        <td>&nbsp;</td>
         <td>Nr.</td>
         <td>Name</td>
         <td>E-Mail</td>
@@ -462,6 +471,7 @@ tr.tabhead {
         <td>Aufdruck</td>
       </tr>
       <tr ng-repeat="shirt in $storage.shirts | filter:'GI'">
+        <td><a ng-click="deleteShirt(shirt)" href="#">&times;</a></td>
         <td>{{$index + 1}}</td>
         <td>{{shirt.name}}</td>
         <td>{{shirt.email}}</td>
@@ -472,9 +482,10 @@ tr.tabhead {
         <td>{{shirt.aufdruck}}</td>
       </tr>
       <tr>
-        <td colspan="8" class="tabhead">Landschaftsökologie:</td>
+        <td colspan="9" class="tabhead">Landschaftsökologie:</td>
       </tr>
       <tr class="tabhead">
+        <td>&nbsp;</td>
         <td>Nr.</td>
         <td>Name</td>
         <td>E-Mail</td>
@@ -485,6 +496,7 @@ tr.tabhead {
         <td>Aufdruck</td>
       </tr>
       <tr ng-repeat="shirt in $storage.shirts | filter:'Lök'">
+        <td><a ng-click="deleteShirt(shirt)" href="#">&times;</a></td>
         <td>{{$index + 1}}</td>
         <td>{{shirt.name}}</td>
         <td>{{shirt.email}}</td>
@@ -495,9 +507,10 @@ tr.tabhead {
         <td>{{shirt.aufdruck}}</td>
       </tr>
       <tr>
-        <td colspan="8" class="tabhead">Geographie:</td>
+        <td colspan="9" class="tabhead">Geographie:</td>
       </tr>
       <tr class="tabhead">
+        <td>&nbsp;</td>
         <td>Nr.</td>
         <td>Name</td>
         <td>E-Mail</td>
@@ -508,6 +521,7 @@ tr.tabhead {
         <td>Aufdruck</td>
       </tr>
       <tr ng-repeat="shirt in $storage.shirts | filter:'GEO'">
+        <td><a ng-click="deleteShirt(shirt)" href="#">&times;</a></td>
         <td>{{$index + 1}}</td>
         <td>{{shirt.name}}</td>
         <td>{{shirt.email}}</td>
