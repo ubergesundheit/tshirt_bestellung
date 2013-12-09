@@ -2,9 +2,8 @@
     "name":  "TshirtBestellung",
     "version": "0.0.1",
     "dependencies": {
-        "angular": "latest",
-        "jquery": "latest",
-        "ngstorage": "latest",
-        "angular-xeditable": "latest"
+        "angular": "1.2.4",
+        "ngstorage": "0.3.0",
+        "angular-xeditable": "0.1.7"
     }
 }
