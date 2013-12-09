@@ -409,12 +409,8 @@ tr.tabhead {
     $scope.download = function() {
       var jsonexport = [];
       angular.copy($scope.$storage.shirts, jsonexport);
-      var geo_csv = json2csv(jsonexport.filter( function(obj) { return obj.studiengang == 'GEO' } ));
-      var gi_csv = json2csv(jsonexport.filter( function(obj) { return obj.studiengang == 'GI' } ));
-      var lok_csv = json2csv(jsonexport.filter( function(obj) { return obj.studiengang == 'LÖK' } ));
-      window.open("data:text/csv;charset=utf-8," + escape(geo_csv), 'shirts_geo.csv');
-      window.open("data:text/csv;charset=utf-8," + escape(gi_csv), 'shirts_gi.csv');
-      window.open("data:text/csv;charset=utf-8," + escape(lok_csv), 'shirts_loek.csv');
+      var csv = json2csv(jsonexport.sort(function(a,b) { return (a.studiengang > b.studiengang ? 1 : -1) }));
+      window.open("data:text/csv;charset=utf-8," + escape(csv), 'shirts.csv');
     };
 
     $scope.reset();
