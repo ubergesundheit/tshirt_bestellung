@@ -407,15 +407,11 @@ tr.tabhead {
     };
 
     $scope.download = function() {
-      var geo_jsonexport = [];
-      var gi_jsonexport = [];
-      var lok_jsonexport = [];
-      angular.copy($scope.$storage.shirts, geo_jsonexport);
-      angular.copy($scope.$storage.shirts, gi_jsonexport);
-      angular.copy($scope.$storage.shirts, lok_jsonexport);
-      var geo_csv = json2csv(geo_jsonexport.filter( function(obj) { return obj.studiengang == 'GEO' } ));
-      var gi_csv = json2csv(gi_jsonexport.filter( function(obj) { return obj.studiengang == 'GI' } ));
-      var lok_csv = json2csv(lok_jsonexport.filter( function(obj) { return obj.studiengang == 'Lök' } ));
+      var jsonexport = [];
+      angular.copy($scope.$storage.shirts, jsonexport);
+      var geo_csv = json2csv(jsonexport.filter( function(obj) { return obj.studiengang == 'GEO' } ));
+      var gi_csv = json2csv(jsonexport.filter( function(obj) { return obj.studiengang == 'GI' } ));
+      var lok_csv = json2csv(jsonexport.filter( function(obj) { return obj.studiengang == 'LÖK' } ));
       window.open("data:text/csv;charset=utf-8," + escape(geo_csv), 'shirts_geo.csv');
       window.open("data:text/csv;charset=utf-8," + escape(gi_csv), 'shirts_gi.csv');
       window.open("data:text/csv;charset=utf-8," + escape(lok_csv), 'shirts_loek.csv');
@@ -494,76 +490,23 @@ tr.tabhead {
   <a ng-click="download()" href="#">Daten herunterladen</a>
   <table>
     <tbody>
-      <tr>
-        <td colspan="9" class="tabhead">Geoinformatik:</td>
-      </tr>
       <tr class="tabhead">
         <td>&nbsp;</td>
-        <td>Nr.</td>
         <td>Name</td>
         <td>E-Mail</td>
         <td>Anzahl</td>
+        <td>Studiengang</td>
         <td>Geschlecht</td>
         <td>Größe</td>
         <td>Farbe</td>
         <td>Aufdruck</td>
       </tr>
-      <tr ng-repeat="shirt in $storage.shirts | filter:'GI'">
+      <tr ng-repeat="shirt in $storage.shirts | orderBy:'studiengang'">
         <td><a ng-click="deleteShirt(shirt)" href="#">&times;</a></td>
-        <td>{{$index + 1}}</td>
         <td><a href="#" e-required editable-text="shirt.name" buttons="no">{{ shirt.name }}</a></td>
         <td><a href="#" e-required editable-text="shirt.email" buttons="no">{{ shirt.email }}</a></td>
         <td><a href="#" e-required editable-text="shirt.anzahl" buttons="no" e-min="1">{{ shirt.anzahl }}</a></td>
-        <td><a href="#" e-required editable-select="shirt.geschlecht" e-ng-options="g for g in gender" buttons="no">{{ shirt.geschlecht }}</a></td>
-        <td><a href="#" e-required editable-select="shirt.groesse" e-ng-options="s for s in sizes" buttons="no">{{ shirt.groesse }}</a></td>
-        <td><a href="#" e-required editable-select="shirt.farbe" e-ng-options="f for f in colors" buttons="no">{{ shirt.farbe }}</a></td>
-        <td><a href="#" e-required editable-select="shirt.aufdruck" e-ng-options="p for p in prints" buttons="no">{{ shirt.aufdruck }}</a></td>
-      </tr>
-      <tr>
-        <td colspan="9" class="tabhead">Landschaftsökologie:</td>
-      </tr>
-      <tr class="tabhead">
-        <td>&nbsp;</td>
-        <td>Nr.</td>
-        <td>Name</td>
-        <td>E-Mail</td>
-        <td>Anzahl</td>
-        <td>Geschlecht</td>
-        <td>Größe</td>
-        <td>Farbe</td>
-        <td>Aufdruck</td>
-      </tr>
-      <tr ng-repeat="shirt in $storage.shirts | filter:'Lök'">
-        <td><a ng-click="deleteShirt(shirt)" href="#">&times;</a></td>
-        <td>{{$index + 1}}</td>
-        <td><a href="#" e-required editable-text="shirt.name" buttons="no">{{ shirt.name }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.email" buttons="no">{{ shirt.email }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.anzahl" buttons="no" e-min="1">{{ shirt.anzahl }}</a></td>
-        <td><a href="#" e-required editable-select="shirt.geschlecht" e-ng-options="g for g in gender" buttons="no">{{ shirt.geschlecht }}</a></td>
-        <td><a href="#" e-required editable-select="shirt.groesse" e-ng-options="s for s in sizes" buttons="no">{{ shirt.groesse }}</a></td>
-        <td><a href="#" e-required editable-select="shirt.farbe" e-ng-options="f for f in colors" buttons="no">{{ shirt.farbe }}</a></td>
-        <td><a href="#" e-required editable-select="shirt.aufdruck" e-ng-options="p for p in prints" buttons="no">{{ shirt.aufdruck }}</a></td>
-      </tr>
-      <tr>
-        <td colspan="9" class="tabhead">Geographie:</td>
-      </tr>
-      <tr class="tabhead">
-        <td>&nbsp;</td>
-        <td>Nr.</td>
-        <td>Name</td>
-        <td>E-Mail</td>
-        <td>Anzahl</td>
-        <td>Geschlecht</td>
-        <td>Größe</td>
-        <td>Farbe</td>
-        <td>Aufdruck</td>
-      </tr>
-      <tr ng-repeat="shirt in $storage.shirts | filter:'GEO'">
-        <td><a ng-click="deleteShirt(shirt)" href="#">&times;</a></td>
-        <td>{{$index + 1}}</td>
-        <td><a href="#" e-required editable-text="shirt.name" buttons="no">{{ shirt.name }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.email" buttons="no">{{ shirt.email }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.anzahl" buttons="no" e-min="1">{{ shirt.anzahl }}</a></td>
+        <td><a href="#" e-required editable-select="shirt.studiengang" e-ng-options="s for s in studies" buttons="no">{{ shirt.studiengang }}</a></td>
         <td><a href="#" e-required editable-select="shirt.geschlecht" e-ng-options="g for g in gender" buttons="no">{{ shirt.geschlecht }}</a></td>
         <td><a href="#" e-required editable-select="shirt.groesse" e-ng-options="s for s in sizes" buttons="no">{{ shirt.groesse }}</a></td>
         <td><a href="#" e-required editable-select="shirt.farbe" e-ng-options="f for f in colors" buttons="no">{{ shirt.farbe }}</a></td>
