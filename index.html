@@ -75,7 +75,6 @@
 </form>
 </div>
 <div id="tab">
-  <a ng-click="download()" href="#">Daten herunterladen</a>
   <table>
     <tbody>
       <tr class="tabhead">
@@ -90,19 +89,19 @@
         <td>Aufdruck</td>
       </tr>
       <tr ng-repeat="shirt in $storage.shirts | orderBy:'studiengang'">
-        <td><a ng-click="deleteShirt(shirt)" href="#">&times;</a></td>
-        <td><a href="#" e-required editable-text="shirt.name" buttons="no">{{ shirt.name }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.email" buttons="no">{{ shirt.email }}</a></td>
-        <td><a href="#" e-required editable-text="shirt.anzahl" buttons="no" e-min="1">{{ shirt.anzahl }}</a></td>
-        <td><a href="#" e-required editable-select="shirt.studiengang" e-ng-options="s for s in studies" buttons="no">{{ shirt.studiengang }}</a></td>
-        <td><a href="#" e-required editable-select="shirt.geschlecht" e-ng-options="g for g in gender" buttons="no">{{ shirt.geschlecht }}</a></td>
-        <td><a href="#" e-required editable-select="shirt.groesse" e-ng-options="s for s in sizes" buttons="no">{{ shirt.groesse }}</a></td>
-        <td><a href="#" e-required editable-select="shirt.farbe" e-ng-options="f for f in colors" buttons="no">{{ shirt.farbe }}</a></td>
-        <td><a href="#" e-required editable-select="shirt.aufdruck" e-ng-options="p for p in prints" buttons="no">{{ shirt.aufdruck }}</a></td>
+        <td><a ng-click="deleteShirt(shirt)" href="">&times;</a></td>
+        <td><a href="" e-required editable-text="shirt.name" buttons="no">{{ shirt.name }}</a></td>
+        <td><a href="" e-required editable-text="shirt.email" buttons="no">{{ shirt.email }}</a></td>
+        <td><a href="" e-required editable-text="shirt.anzahl" buttons="no" e-min="1">{{ shirt.anzahl }}</a></td>
+        <td><a href="" e-required editable-select="shirt.studiengang" e-ng-options="s for s in studies" buttons="no">{{ shirt.studiengang }}</a></td>
+        <td><a href="" e-required editable-select="shirt.geschlecht" e-ng-options="g for g in gender" buttons="no">{{ shirt.geschlecht }}</a></td>
+        <td><a href="" e-required editable-select="shirt.groesse" e-ng-options="s for s in sizes" buttons="no">{{ shirt.groesse }}</a></td>
+        <td><a href="" e-required editable-select="shirt.farbe" e-ng-options="f for f in colors" buttons="no">{{ shirt.farbe }}</a></td>
+        <td><a href="" e-required editable-select="shirt.aufdruck" e-ng-options="p for p in prints" buttons="no">{{ shirt.aufdruck }}</a></td>
       </tr>
     </tbody>
   </table>
-  <a ng-click="deleteShirts()" href="#">Alle löschen</a>
+    <a ng-click="download()" href="#">Daten herunterladen</a> | <a ng-click="deleteShirts()" href="">Alle löschen</a>
 </div>
 
 </body>

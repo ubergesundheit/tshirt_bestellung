@@ -64,7 +64,9 @@
     };
 
     $scope.deleteShirts = function() {
-      delete $localStorage.shirts;
+      if (window.confirm("Wirklich alle Shirts löschen?")) {
+        delete $localStorage.shirts;
+      }
     };
 
     $scope.deleteShirt = function(shirt) {
