@@ -1,0 +1,286 @@
+#tab {
+  width: 56%;
+  margin-left: 44%;
+}
+
+div#form {
+  float: left;
+  width: 44%;
+}
+
+table {
+  width: 100%;
+}
+
+div.field, div.actions {
+  margin-bottom: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+input.form-input {
+  height: 1.3em;
+  font-size: 1.2em;
+}
+
+button.form-input {
+  margin-top: 0.5em;
+  height: 2em;
+  font-size: 1.2em;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.radio_label {
+  display: inline-block;
+  height: 25px;
+  width: 100px;
+  vertical-align: middle;
+  background-color: lightgrey;
+  border: 3px solid transparent;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.selector_label {
+  width: 25px;
+}
+
+.shirt {
+  display: inline-block;
+  padding-top:20px;
+  height: 240px;
+  width: 200px;
+  float: left;
+}
+
+.shirt_text {
+  color: white;
+  margin-top: -40px;
+  font-size: 16pt;
+}
+
+.shirt_text:before {
+  content: attr(data-study);
+}
+
+.selector_container {
+  height: 260px;
+  width: 75px;
+  float: left;
+}
+
+@font-face {
+  font-family: globusFont;
+  src: url('globus_font.ttf');
+}
+
+.globus {
+  display:inline;
+  font-family: globusFont;
+  font-size: 200px;
+  color: white;
+  margin-top: 20px;
+}
+
+input[type="radio"]:checked + label {
+  border: 3px solid red;
+  font-weight: bold;
+}
+
+input[type="radio"]:disabled + label {
+  color: grey;
+  background-color: lightgrey;
+}
+
+.GEO {
+  background-color: orange;
+}
+
+.GI {
+  background-color: #336699;
+}
+
+.LÖK {
+  background-color: green;
+}
+
+.Black {
+  background-color: black;
+}
+
+.Herren {
+  background-color: cornflowerblue;
+}
+
+.Damen {
+  background-color: lightcoral;
+}
+
+.CityGreen {
+  background-color: forestgreen;
+}
+
+.Navy {
+  background-color: navy;
+}
+
+.RiverBlue {
+  background-color: cornflowerblue;
+}
+
+.Chocolate {
+  background-color: chocolate;
+}
+
+.Red {
+  background-color: red;
+}
+
+.White {
+  background-color: ghostwhite;
+}
+
+.Natural {
+  background-color: wheat;
+}
+
+label.NeonGrün {
+  background-color: yellowgreen;
+}
+
+p.NeonGrün {
+  color: yellowgreen;
+}
+
+label.NeonPink {
+  background-color: deeppink;
+}
+
+p.NeonPink {
+  color: deeppink;
+}
+
+label.Blau {
+  background-color: steelblue;
+}
+
+p.Blau {
+  color: steelblue;
+}
+
+label.Hellblau {
+  background-color: skyblue;
+}
+
+p.Hellblau {
+  color: skyblue;
+}
+
+label.NeonGelb {
+  background-color: yellow;
+}
+
+p.NeonGelb {
+  color: yellow;
+}
+
+label.Gelb {
+ background-color: gold;
+}
+
+p.Gelb {
+  color: gold;
+}
+
+label.Beige {
+  background-color: darkgoldenrod;
+}
+
+p.Beige {
+  color: darkgoldenrod;
+}
+
+label.Kackbraun {
+  background-color: saddlebrown;
+}
+
+p.Kackbraun {
+  color: saddlebrown;
+}
+
+label.Orange {
+ background-color: darkorange;
+}
+
+p.Orange {
+  color: darkorange;
+}
+
+label.NeonOrange {
+  background-color: orange;
+}
+
+p.NeonOrange {
+  color: orange;
+}
+
+label.Weiss {
+  background-color: ghostwhite;
+}
+
+p.Weiss {
+  color: ghostwhite;
+}
+
+label.Schwarz {
+  background-color: black;
+}
+
+p.Schwarz {
+  color: black;
+}
+
+label.Rot {
+  background-color: red;
+}
+
+p.Rot {
+  color: red;
+}
+
+label.Lila {
+  background-color: darkorchid;
+}
+
+p.Lila {
+  color: darkorchid;
+}
+
+label.Türkis {
+  background-color: cyan;
+}
+
+p.Türkis {
+  color: cyan;
+}
+
+label.Grün {
+  background-color: darkgreen;
+}
+
+p.Grün {
+  color: darkgreen;
+}
+
+td.tabhead {
+  font-weight: bold;
+  background-color: lightgrey;
+}
+
+input.editable-input {
+  width: 100px;
+}
