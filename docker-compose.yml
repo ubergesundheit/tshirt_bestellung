@@ -1,0 +1,4 @@
+geofs-shirts:
+  build: .
+  ports:
+    - 80:80

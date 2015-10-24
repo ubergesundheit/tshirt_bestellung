@@ -7,3 +7,7 @@
 
 ####Installation
 install bower and run `bower install`
+
+####Run with docker
+- install docker and docker-compose
+- run `docker-compose up`
